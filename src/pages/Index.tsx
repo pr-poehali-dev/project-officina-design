@@ -1,8 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
-
-const HERO_IMG =
-  'https://cdn.poehali.dev/projects/08d0c2a2-be6a-4066-897a-f52a0c49d18b/files/fa723ab3-0601-46a0-b67b-b945f941cd40.jpg';
 
 const sections = [
   {
@@ -11,7 +9,8 @@ const sections = [
     title: 'Officina',
     desc: 'Технические изделия и тюнинг: приборки, ручки, крепления.',
     icon: 'Wrench',
-    image: HERO_IMG,
+    href: '/officina',
+    image: 'https://cdn.poehali.dev/projects/08d0c2a2-be6a-4066-897a-f52a0c49d18b/files/0665b630-36fe-495d-b4d8-06c0a0a747cb.jpg',
   },
   {
     id: 'about',
@@ -19,7 +18,8 @@ const sections = [
     title: 'О нас',
     desc: 'История, философия и команда. Блог, статьи и контакты.',
     icon: 'Feather',
-    image: HERO_IMG,
+    href: '/about',
+    image: 'https://cdn.poehali.dev/projects/08d0c2a2-be6a-4066-897a-f52a0c49d18b/files/325ab3ab-f8a5-49a5-b385-77bc145de420.jpg',
   },
   {
     id: 'design',
@@ -27,12 +27,14 @@ const sections = [
     title: 'Design',
     desc: 'Концептуальные проекты для конкретных авто.',
     icon: 'Sparkles',
-    image: HERO_IMG,
+    href: '/design',
+    image: 'https://cdn.poehali.dev/projects/08d0c2a2-be6a-4066-897a-f52a0c49d18b/files/9c9e9df2-d507-4e9f-be6c-213430871a34.jpg',
   },
 ];
 
 const Index = () => {
   const [hovered, setHovered] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-anthracite">
@@ -52,10 +54,9 @@ const Index = () => {
           const active = hovered === s.id;
           const dimmed = hovered !== null && !active;
           return (
-            <a
+            <button
               key={s.id}
-              id={s.id}
-              href={`#${s.id}`}
+              onClick={() => navigate(s.href)}
               onMouseEnter={() => setHovered(s.id)}
               onMouseLeave={() => setHovered(null)}
               className={`group relative flex-1 overflow-hidden border-background/10 transition-all duration-700 ease-out
@@ -128,7 +129,7 @@ const Index = () => {
                   }`}
                 />
               </div>
-            </a>
+            </button>
           );
         })}
       </div>
