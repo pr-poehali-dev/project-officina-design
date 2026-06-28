@@ -9,15 +9,9 @@ const sections = [
     id: 'officina',
     eyebrow: 'Каталог',
     title: 'Officina',
-    desc: 'Технические изделия и тюнинг: приборки, ручки, крепления. С фильтрами и корзиной.',
+    desc: 'Технические изделия и тюнинг: приборки, ручки, крепления.',
     icon: 'Wrench',
-  },
-  {
-    id: 'design',
-    eyebrow: 'Проекты стайлинга',
-    title: 'Design',
-    desc: 'Концептуальные проекты для конкретных авто. Купить деталь или весь комплект.',
-    icon: 'Sparkles',
+    image: HERO_IMG,
   },
   {
     id: 'about',
@@ -25,6 +19,15 @@ const sections = [
     title: 'О нас',
     desc: 'История, философия и команда. Блог, статьи и контакты.',
     icon: 'Feather',
+    image: HERO_IMG,
+  },
+  {
+    id: 'design',
+    eyebrow: 'Проекты стайлинга',
+    title: 'Design',
+    desc: 'Концептуальные проекты для конкретных авто.',
+    icon: 'Sparkles',
+    image: HERO_IMG,
   },
 ];
 
@@ -32,174 +35,111 @@ const Index = () => {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Top bar */}
-      <header className="relative z-20 flex items-center justify-between px-6 md:px-12 py-6">
-        <div className="flex items-baseline gap-2">
-          <span className="font-display text-3xl tracking-tight text-primary">OFFICINA</span>
-          <span className="hidden sm:inline text-[11px] uppercase tracking-[0.3em] text-muted-foreground mt-1">
-            Atelier
-          </span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm tracking-wide">
-          {sections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="text-foreground/70 hover:text-primary transition-colors">
-              {s.title}
-            </a>
-          ))}
-        </nav>
-        <button className="relative flex items-center gap-2 text-primary hover:text-accent transition-colors">
-          <Icon name="ShoppingBag" size={20} />
-          <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-accent text-accent-foreground text-[10px] flex items-center justify-center">
-            0
-          </span>
-        </button>
-      </header>
+    <div className="relative h-screen w-screen overflow-hidden bg-anthracite">
+      {/* Brand mark */}
+      <div className="pointer-events-none absolute top-6 left-1/2 -translate-x-1/2 z-30 text-center">
+        <span className="font-display text-3xl md:text-4xl tracking-tight text-background drop-shadow-lg">
+          OFFICINA
+        </span>
+        <p className="hidden md:block text-[10px] uppercase tracking-[0.35em] text-background/70 mt-1">
+          Итальянская душа · на русском языке
+        </p>
+      </div>
 
-      {/* Hero */}
-      <section className="relative px-6 md:px-12 pt-10 md:pt-20 pb-16">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          {/* Left text */}
-          <div className="lg:col-span-6 relative z-10">
-            <div className="h-px w-24 bg-accent animate-line mb-8" />
-            <p
-              className="text-sm uppercase tracking-[0.35em] text-accent mb-6 animate-float-up"
-              style={{ animationDelay: '0.1s' }}
-            >
-              Итальянская душа
-            </p>
-            <h1
-              className="font-display text-5xl md:text-7xl xl:text-8xl leading-[0.95] text-foreground animate-float-up"
-              style={{ animationDelay: '0.2s' }}
-            >
-              говорит
-              <br />
-              <span className="italic text-primary">на русском</span>
-              <br />
-              языке
-            </h1>
-            <p
-              className="mt-8 max-w-md text-base md:text-lg text-muted-foreground text-balance animate-float-up"
-              style={{ animationDelay: '0.35s' }}
-            >
-              Премиальный автомобильный стайлинг и собственные технические изделия.
-              Три мира — каталог, проекты и философия бренда.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4 animate-float-up" style={{ animationDelay: '0.5s' }}>
-              <a
-                href="#officina"
-                className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-sm tracking-wide hover:bg-[hsl(351,41%,26%)] transition-colors"
-              >
-                Смотреть каталог
-                <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#design"
-                className="inline-flex items-center gap-3 border border-primary/40 text-primary px-8 py-4 rounded-sm tracking-wide hover:border-primary hover:bg-primary/5 transition-colors"
-              >
-                Проекты стайлинга
-              </a>
-            </div>
-          </div>
-
-          {/* Right image */}
-          <div className="lg:col-span-6 relative animate-float-up" style={{ animationDelay: '0.3s' }}>
-            <div className="relative grain rounded-sm overflow-hidden shadow-2xl">
-              <img
-                src={HERO_IMG}
-                alt="Премиальный автомобильный интерьер"
-                className="w-full h-[340px] md:h-[520px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-anthracite/50 to-transparent" />
-              <div className="absolute bottom-5 left-5 text-background">
-                <p className="text-[11px] uppercase tracking-[0.3em] opacity-80">Atelier № 01</p>
-                <p className="font-display text-2xl">Cabernet Edition</p>
-              </div>
-            </div>
-            <div className="hidden md:block absolute -bottom-6 -left-6 bg-card border border-border rounded-sm px-6 py-4 shadow-xl">
-              <p className="font-display text-3xl text-primary leading-none">12+</p>
-              <p className="text-xs text-muted-foreground tracking-wide mt-1">проектов в работе</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Three sections */}
-      <section className="px-6 md:px-12 pb-24">
-        <div className="grid md:grid-cols-3 gap-5">
-          {sections.map((s, i) => (
+      {/* Three full-height columns */}
+      <div className="flex flex-col md:flex-row h-full w-full">
+        {sections.map((s, i) => {
+          const active = hovered === s.id;
+          const dimmed = hovered !== null && !active;
+          return (
             <a
               key={s.id}
               id={s.id}
               href={`#${s.id}`}
               onMouseEnter={() => setHovered(s.id)}
               onMouseLeave={() => setHovered(null)}
-              className="group relative flex flex-col justify-between min-h-[280px] p-8 rounded-sm border border-border bg-card overflow-hidden transition-all duration-500 hover:border-primary animate-float-up"
-              style={{ animationDelay: `${0.5 + i * 0.12}s` }}
+              className={`group relative flex-1 overflow-hidden border-background/10 transition-all duration-700 ease-out
+                ${i < sections.length - 1 ? 'md:border-r border-b md:border-b-0' : ''}
+                ${active ? 'md:flex-[1.6]' : dimmed ? 'md:flex-[0.8]' : ''}`}
             >
+              {/* Background image */}
               <div
-                className="absolute inset-0 bg-primary transition-transform duration-500 ease-out"
-                style={{
-                  transform: hovered === s.id ? 'translateY(0)' : 'translateY(101%)',
-                }}
+                className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ${
+                  active ? 'scale-105' : 'scale-100'
+                }`}
+                style={{ backgroundImage: `url(${s.image})` }}
               />
-              <div className="relative z-10 flex items-center justify-between">
+              {/* Color veil */}
+              <div
+                className={`absolute inset-0 transition-all duration-700 ${
+                  active
+                    ? 'bg-primary/55'
+                    : 'bg-anthracite/80 group-hover:bg-anthracite/70'
+                }`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-anthracite/90 via-transparent to-anthracite/40" />
+
+              {/* Content */}
+              <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+                <div className="grain absolute inset-0 opacity-100" />
                 <span
-                  className={`text-xs uppercase tracking-[0.3em] transition-colors duration-500 ${
-                    hovered === s.id ? 'text-primary-foreground/70' : 'text-accent'
+                  className={`mb-4 text-[11px] uppercase tracking-[0.35em] transition-colors duration-500 ${
+                    active ? 'text-accent' : 'text-background/60'
                   }`}
                 >
                   {s.eyebrow}
                 </span>
+
                 <Icon
                   name={s.icon}
-                  size={22}
-                  className={`transition-colors duration-500 ${
-                    hovered === s.id ? 'text-primary-foreground' : 'text-primary'
+                  size={34}
+                  className={`mb-5 transition-all duration-500 ${
+                    active ? 'text-accent scale-110' : 'text-background/80'
                   }`}
                 />
-              </div>
-              <div className="relative z-10">
-                <h2
-                  className={`font-display text-4xl mb-3 transition-colors duration-500 ${
-                    hovered === s.id ? 'text-primary-foreground' : 'text-foreground'
-                  }`}
-                >
+
+                <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-background leading-none">
                   {s.title}
                 </h2>
+
                 <p
-                  className={`text-sm leading-relaxed transition-colors duration-500 ${
-                    hovered === s.id ? 'text-primary-foreground/80' : 'text-muted-foreground'
+                  className={`mt-5 max-w-xs text-sm leading-relaxed text-background/70 transition-all duration-500 ${
+                    active
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-3 md:opacity-0'
                   }`}
                 >
                   {s.desc}
                 </p>
+
                 <span
-                  className={`mt-5 inline-flex items-center gap-2 text-sm tracking-wide transition-colors duration-500 ${
-                    hovered === s.id ? 'text-primary-foreground' : 'text-primary'
+                  className={`mt-7 inline-flex items-center gap-2 text-sm tracking-wide text-background transition-all duration-500 ${
+                    active ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
-                  Перейти
-                  <Icon name="ArrowUpRight" size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  Войти
+                  <Icon name="ArrowRight" size={16} />
                 </span>
+
+                {/* Idle hint line */}
+                <span
+                  className={`absolute bottom-10 h-px bg-accent transition-all duration-500 ${
+                    active ? 'w-16' : 'w-8'
+                  }`}
+                />
               </div>
             </a>
-          ))}
-        </div>
-      </section>
+          );
+        })}
+      </div>
 
-      {/* Footer */}
-      <footer className="border-t border-border px-6 md:px-12 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span className="font-display text-2xl text-primary">OFFICINA</span>
-        <p className="text-sm text-muted-foreground tracking-wide">
-          Итальянская душа говорит на русском языке
-        </p>
-        <div className="flex items-center gap-5 text-primary">
-          <a href="#" className="hover:text-accent transition-colors"><Icon name="Send" size={18} /></a>
-          <a href="#" className="hover:text-accent transition-colors"><Icon name="Instagram" size={18} /></a>
-          <a href="#" className="hover:text-accent transition-colors"><Icon name="Mail" size={18} /></a>
-        </div>
-      </footer>
+      {/* Cart */}
+      <button className="absolute top-6 right-6 z-30 flex items-center gap-2 text-background hover:text-accent transition-colors">
+        <Icon name="ShoppingBag" size={22} />
+        <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-accent text-accent-foreground text-[10px] flex items-center justify-center">
+          0
+        </span>
+      </button>
     </div>
   );
 };
